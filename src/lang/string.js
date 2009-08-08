@@ -2,9 +2,9 @@
  * The String unit additionals
  *
  * Credits:
- *   The faster trim method is based on the work of Yesudeep Mangalapilly 
+ *   The faster trim method is based on the work of Yesudeep Mangalapilly
  *   http://yesudeep.wordpress.com/2009/07/31/even-faster-string-prototype-trim-implementation-in-javascript/
- *   
+ *
  * @copyright (C) 2009 Nikolay V. Nemshilov aka St.
  */
 
@@ -14,13 +14,13 @@ if (String.prototype.trim.toString().include('return')) {
      "2006 2007 2008 2009 200a 200b 2028 2029 202f 205f 3000").each(function(key) {
        String.WSPS[key.toInt(16)] = 1;
   });
-  
+
   String.prototype.trim = function() {
-    var str = this, len = this.length, i = 0;
+    var str = this, len = this.length, i = 0, wsps = String.WSPS;
     if (len) {
-      while (String.WSPS[str.charCodeAt(--len)]);
+      while (wsps[str.charCodeAt(--len)]);
       if (++len) {
-        while(String.WSPS[str.charCodeAt(i)]) i++;
+        while(wsps[str.charCodeAt(i)]) i++;
       }
       str = str.substring(i, len);
     }
